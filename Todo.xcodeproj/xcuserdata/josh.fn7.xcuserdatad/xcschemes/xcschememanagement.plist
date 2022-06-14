@@ -4,10 +4,99 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Todo.xcscheme_^#shared#^_</key>
+		<key>Application.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Common.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>DataAccess.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Domain.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Presentation.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Rx (Playground) 1.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Rx (Playground) 2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Rx (Playground).xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>Todo.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5B3EE3F228582AC600D47327</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B3EE41028582C1E00D47327</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B3EE41928582C1E00D47327</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B3EE43328582C5B00D47327</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B3EE43A28582C5B00D47327</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B3EE45328582C6B00D47327</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B3EE45A28582C6B00D47327</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B8A484828584CEF0067B4B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

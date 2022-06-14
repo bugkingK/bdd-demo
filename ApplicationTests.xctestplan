@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "58167C91-778F-4083-9E84-3B219CE063FD",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Todo.xcodeproj",
+        "identifier" : "5B3EE43A28582C5B00D47327",
+        "name" : "ApplicationTests"
+      }
+    }
+  ],
+  "version" : 1
+}
