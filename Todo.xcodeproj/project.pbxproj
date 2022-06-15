@@ -38,6 +38,8 @@
 		5B8A484C28584CEF0067B4B8 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B8A484B28584CEF0067B4B8 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B8A485228584E3B0067B4B8 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A485128584E3B0067B4B8 /* TodoItem.swift */; };
 		5BBA033A2859686A00CEF70A /* GeneralError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA03392859686A00CEF70A /* GeneralError.swift */; };
+		5BBA033D28596DED00CEF70A /* MainContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA033C28596DED00CEF70A /* MainContract.swift */; };
+		5BBA034028596FBF00CEF70A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA033F28596FBF00CEF70A /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +151,8 @@
 		5B8A484B28584CEF0067B4B8 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		5B8A485128584E3B0067B4B8 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		5BBA03392859686A00CEF70A /* GeneralError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralError.swift; sourceTree = "<group>"; };
+		5BBA033C28596DED00CEF70A /* MainContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContract.swift; sourceTree = "<group>"; };
+		5BBA033F28596FBF00CEF70A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +299,7 @@
 		5B3EE43528582C5B00D47327 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				5BBA033B28596DE600CEF70A /* Scene */,
 				5B48142E2859657D00568767 /* Store */,
 				5B3EE43628582C5B00D47327 /* Application.h */,
 			);
@@ -380,6 +385,23 @@
 				5BBA03392859686A00CEF70A /* GeneralError.swift */,
 			);
 			path = Type;
+			sourceTree = "<group>";
+		};
+		5BBA033B28596DE600CEF70A /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				5BBA033E28596DF300CEF70A /* Main */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		5BBA033E28596DF300CEF70A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5BBA033C28596DED00CEF70A /* MainContract.swift */,
+				5BBA033F28596FBF00CEF70A /* MainViewModel.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -777,7 +799,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BBA033D28596DED00CEF70A /* MainContract.swift in Sources */,
 				5B4814302859658800568767 /* TodoItemStore.swift in Sources */,
+				5BBA034028596FBF00CEF70A /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
