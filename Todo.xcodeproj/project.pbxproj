@@ -58,6 +58,10 @@
 		5BBA036C2859B6F800CEF70A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5BBA036B2859B6F800CEF70A /* RxSwift */; };
 		5BBA036F2859B70F00CEF70A /* StubTodoItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA036E2859B70F00CEF70A /* StubTodoItemStore.swift */; };
 		5BBA03722859B7C300CEF70A /* Combinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA03712859B7C300CEF70A /* Combinator.swift */; };
+		5BBA03732859C2EA00CEF70A /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8A484928584CEF0067B4B8 /* Common.framework */; };
+		5BBA03742859C2EA00CEF70A /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8A484928584CEF0067B4B8 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BBA03772859C35100CEF70A /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3EE41128582C1E00D47327 /* Domain.framework */; platformFilter = ios; };
+		5BBA03782859C35100CEF70A /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3EE41128582C1E00D47327 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +149,20 @@
 			remoteGlobalIDString = 5B3EE41028582C1E00D47327;
 			remoteInfo = Domain;
 		};
+		5BBA03752859C2EA00CEF70A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B3EE3EB28582AC600D47327 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B8A484828584CEF0067B4B8;
+			remoteInfo = Common;
+		};
+		5BBA03792859C35100CEF70A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B3EE3EB28582AC600D47327 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B3EE41028582C1E00D47327;
+			remoteInfo = Domain;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -156,6 +174,7 @@
 			files = (
 				5B3EE46828582C6B00D47327 /* DataAccess.framework in Embed Frameworks */,
 				5B3EE42728582C1E00D47327 /* Domain.framework in Embed Frameworks */,
+				5BBA03742859C2EA00CEF70A /* Common.framework in Embed Frameworks */,
 				5B3EE47B28582C7600D47327 /* Presentation.framework in Embed Frameworks */,
 				5B3EE44828582C5B00D47327 /* Application.framework in Embed Frameworks */,
 			);
@@ -171,6 +190,17 @@
 				5BBA03622859A31100CEF70A /* Domain.framework in Embed Frameworks */,
 				5BBA03592859A30C00CEF70A /* Application.framework in Embed Frameworks */,
 				5BBA035E2859A31100CEF70A /* Common.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BBA037B2859C35100CEF70A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5BBA03782859C35100CEF70A /* Domain.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,6 +255,7 @@
 				5B3EE46728582C6B00D47327 /* DataAccess.framework in Frameworks */,
 				5B3EE42628582C1E00D47327 /* Domain.framework in Frameworks */,
 				5BBA036C2859B6F800CEF70A /* RxSwift in Frameworks */,
+				5BBA03732859C2EA00CEF70A /* Common.framework in Frameworks */,
 				5B3EE47A28582C7600D47327 /* Presentation.framework in Frameworks */,
 				5B3EE44728582C5B00D47327 /* Application.framework in Frameworks */,
 			);
@@ -249,6 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BBA03772859C35100CEF70A /* Domain.framework in Frameworks */,
 				5B8A483E28584C510067B4B8 /* RxSwift in Frameworks */,
 				5B8A483C28584C510067B4B8 /* RxCocoa in Frameworks */,
 			);
@@ -591,6 +623,7 @@
 				5B3EE44628582C5B00D47327 /* PBXTargetDependency */,
 				5B3EE46628582C6B00D47327 /* PBXTargetDependency */,
 				5B3EE47928582C7600D47327 /* PBXTargetDependency */,
+				5BBA03762859C2EA00CEF70A /* PBXTargetDependency */,
 			);
 			name = Todo;
 			packageProductDependencies = (
@@ -645,10 +678,12 @@
 				5B3EE43028582C5B00D47327 /* Sources */,
 				5B3EE43128582C5B00D47327 /* Frameworks */,
 				5B3EE43228582C5B00D47327 /* Resources */,
+				5BBA037B2859C35100CEF70A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5BBA037A2859C35100CEF70A /* PBXTargetDependency */,
 			);
 			name = Application;
 			packageProductDependencies = (
@@ -1055,6 +1090,17 @@
 			platformFilter = ios;
 			target = 5B3EE41028582C1E00D47327 /* Domain */;
 			targetProxy = 5BBA03632859A31100CEF70A /* PBXContainerItemProxy */;
+		};
+		5BBA03762859C2EA00CEF70A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B8A484828584CEF0067B4B8 /* Common */;
+			targetProxy = 5BBA03752859C2EA00CEF70A /* PBXContainerItemProxy */;
+		};
+		5BBA037A2859C35100CEF70A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 5B3EE41028582C1E00D47327 /* Domain */;
+			targetProxy = 5BBA03792859C35100CEF70A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
