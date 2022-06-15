@@ -32,7 +32,9 @@ class MainViewModelSpec : QuickSpec {
             
             todoItemStore = .init()
             
-            sut = .init(todoItemStore: todoItemStore)
+            sut = .init(
+                scheduler: scheduler,
+                todoItemStore: todoItemStore)
             
             stateObserver = scheduler.createObserver(MainUIState.self)
             sut.state.subscribe(stateObserver).disposed(by: scope)
@@ -71,6 +73,7 @@ class MainViewModelSpec : QuickSpec {
             beforeEach {
                 todoItems = (1 ... 10).map { .random(id: "\($0)") }
                 todoItemStore.itemsSubject.onNext(todoItems)
+                scheduler.advanceTo(2)
             }
             
             it("state 갱신") {
