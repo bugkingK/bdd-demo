@@ -70,10 +70,56 @@ final class StubTodoItemStore : TodoItemStore {
     
 }
 
+extension TodoItemStore {
+    
+    func addNewItem() {
+        addItem(TodoItem.createRandom()).subscribe().dispose()
+    }
+    
+}
+
 private extension TodoItem {
     
-    static func with(id: String, item: TodoItem) -> TodoItem {
+    static func with(id: String, item: Self) -> Self {
         TodoItem(id: id, title: item.title, detail: item.detail, createdAt: item.createdAt, tags: item.tags, completedAt: item.completedAt)
+    }
+    
+    static func createRandom() -> Self {
+        TodoItem(
+            title: Titles.getRandom(),
+            detail: Details.getRandom(),
+            createdAt: Date())
+    }
+    
+    enum Titles {
+        static func getRandom() -> String {
+            ["화단에 물주기",
+             "이직자리 알아보기",
+             "이력서 업데이트 하기",
+             "BDD 발표 준비하기",
+             "리팩토링",
+             "숨쉬기",
+             "심호흡하기",
+             "플랭킹",
+             "출근하는 척 하기",
+             "물 마시기",
+             "물 두 잔 마시기",
+             "물 겁나 마시기",
+             "비타민 복용하기"
+            ].randomElement()!
+        }
+    }
+    
+    enum Details {
+        static func getRandom() -> String? {
+            [
+                nil,
+                "무슨 내용을 넣지",
+                "이런 거 쓰는 게 제일 어려움",
+                "어쩔티비",
+                "BDD 가즈아",
+            ].randomElement()!
+        }
     }
     
 }

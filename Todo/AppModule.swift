@@ -27,7 +27,7 @@ final class AppModule {
     
     func loadInitial() {
         let vm = MainViewModel(
-            scheduler: ioScheduler,
+            scheduler: uiScheduler,
             todoItemStore: todoItemStore)
         observeMainRoute(vm.route)
         
@@ -51,7 +51,8 @@ private extension AppModule {
             .subscribe(onNext: { module, route in
                 switch route {
                 case .add:
-                    print(#function, "add")
+                    print("추가화면 생략")
+                    module.todoItemStore.addNewItem()
                     
                 case .detail(let itemID):
                     print(#function, "itemID: \(itemID)")

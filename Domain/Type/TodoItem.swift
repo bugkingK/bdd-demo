@@ -15,7 +15,7 @@ public struct TodoItem : Identifiable {
     public var tags: [String]
     public var completedAt: Date?
 
-    public init(id: String = "", title: String, detail: String? = nil, createdAt: Date, tags: [String], completedAt: Date? = nil) {
+    public init(id: String = "", title: String, detail: String? = nil, createdAt: Date, tags: [String] = [], completedAt: Date? = nil) {
         self.id = id
         self.title = title
         self.detail = detail
