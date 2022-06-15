@@ -20,10 +20,7 @@ public class MainViewModel : MainViewModelProtocol {
     public func userAction(_ action: MainUserAction) {
     }
     
+    public init() { }
+    
 }
 
-extension MainUIState {
-    
-    static let empty = MainUIState(todoItems: [])
-    
-}

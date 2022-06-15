@@ -15,7 +15,6 @@
 		5B3EE42628582C1E00D47327 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3EE41128582C1E00D47327 /* Domain.framework */; };
 		5B3EE42728582C1E00D47327 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3EE41128582C1E00D47327 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B3EE43C28582C5B00D47327 /* Application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3EE43428582C5B00D47327 /* Application.framework */; };
-		5B3EE44328582C5B00D47327 /* ApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3EE44228582C5B00D47327 /* ApplicationTests.swift */; };
 		5B3EE44428582C5B00D47327 /* Application.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3EE43628582C5B00D47327 /* Application.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B3EE44728582C5B00D47327 /* Application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3EE43428582C5B00D47327 /* Application.framework */; };
 		5B3EE44828582C5B00D47327 /* Application.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3EE43428582C5B00D47327 /* Application.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -40,6 +39,7 @@
 		5BBA033A2859686A00CEF70A /* GeneralError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA03392859686A00CEF70A /* GeneralError.swift */; };
 		5BBA033D28596DED00CEF70A /* MainContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA033C28596DED00CEF70A /* MainContract.swift */; };
 		5BBA034028596FBF00CEF70A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA033F28596FBF00CEF70A /* MainViewModel.swift */; };
+		5BBA03422859709A00CEF70A /* MainViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA03412859709A00CEF70A /* MainViewModelSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,7 +137,6 @@
 		5B3EE43428582C5B00D47327 /* Application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3EE43628582C5B00D47327 /* Application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		5B3EE43B28582C5B00D47327 /* ApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B3EE44228582C5B00D47327 /* ApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationTests.swift; sourceTree = "<group>"; };
 		5B3EE45428582C6B00D47327 /* DataAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3EE45628582C6B00D47327 /* DataAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataAccess.h; sourceTree = "<group>"; };
 		5B3EE45B28582C6B00D47327 /* DataAccessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataAccessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +152,7 @@
 		5BBA03392859686A00CEF70A /* GeneralError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralError.swift; sourceTree = "<group>"; };
 		5BBA033C28596DED00CEF70A /* MainContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContract.swift; sourceTree = "<group>"; };
 		5BBA033F28596FBF00CEF70A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		5BBA03412859709A00CEF70A /* MainViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,7 +309,7 @@
 		5B3EE44128582C5B00D47327 /* ApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
-				5B3EE44228582C5B00D47327 /* ApplicationTests.swift */,
+				5BBA03412859709A00CEF70A /* MainViewModelSpec.swift */,
 			);
 			path = ApplicationTests;
 			sourceTree = "<group>";
@@ -656,6 +656,7 @@
 					};
 					5B3EE43A28582C5B00D47327 = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 					5B3EE45328582C6B00D47327 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -809,7 +810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B3EE44328582C5B00D47327 /* ApplicationTests.swift in Sources */,
+				5BBA03422859709A00CEF70A /* MainViewModelSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1247,16 +1248,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = josh.fn7.ApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1265,10 +1273,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = josh.fn7.ApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

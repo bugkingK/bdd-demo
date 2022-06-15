@@ -34,10 +34,16 @@ public protocol MainViewModelProtocol : AnyObject {
     
 }
 
-// MARK: Extension
+// MARK: - Extension
 
 extension MainUserAction : Equatable { }
 
 extension MainUIState : Equatable { }
+
+public extension MainUIState {
+    
+    static let empty = MainUIState(todoItems: [])
+    
+}
 
 extension MainRoute : Equatable { }
