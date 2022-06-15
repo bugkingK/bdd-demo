@@ -43,7 +43,7 @@ class MainViewModelSpec : QuickSpec {
             sut.route.subscribe(routeObserver).disposed(by: scope)
         }
         
-        it("초기 샅애") {
+        it("초기 상태") {
             expect(stateObserver.events).to(haveCount(1))
             expect(stateObserver.events.last?.value.element).to(equal(.empty))
             
