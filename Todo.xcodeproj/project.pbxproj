@@ -54,6 +54,10 @@
 		5BBA03612859A31100CEF70A /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3EE41128582C1E00D47327 /* Domain.framework */; platformFilter = ios; };
 		5BBA03622859A31100CEF70A /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3EE41128582C1E00D47327 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5BBA03662859A31900CEF70A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5BBA03652859A31900CEF70A /* RxSwift */; };
+		5BBA036A2859B6AF00CEF70A /* AppModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA03692859B6AF00CEF70A /* AppModule.swift */; };
+		5BBA036C2859B6F800CEF70A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5BBA036B2859B6F800CEF70A /* RxSwift */; };
+		5BBA036F2859B70F00CEF70A /* StubTodoItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA036E2859B70F00CEF70A /* StubTodoItemStore.swift */; };
+		5BBA03722859B7C300CEF70A /* Combinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA03712859B7C300CEF70A /* Combinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +212,9 @@
 		5BBA0352285980AE00CEF70A /* Bundle+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Constant.swift"; sourceTree = "<group>"; };
 		5BBA0354285980BC00CEF70A /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		5BBA03562859A2BC00CEF70A /* TodoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemCell.swift; sourceTree = "<group>"; };
+		5BBA03692859B6AF00CEF70A /* AppModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModule.swift; sourceTree = "<group>"; };
+		5BBA036E2859B70F00CEF70A /* StubTodoItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubTodoItemStore.swift; sourceTree = "<group>"; };
+		5BBA03712859B7C300CEF70A /* Combinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +224,7 @@
 			files = (
 				5B3EE46728582C6B00D47327 /* DataAccess.framework in Frameworks */,
 				5B3EE42628582C1E00D47327 /* Domain.framework in Frameworks */,
+				5BBA036C2859B6F800CEF70A /* RxSwift in Frameworks */,
 				5B3EE47A28582C7600D47327 /* Presentation.framework in Frameworks */,
 				5B3EE44728582C5B00D47327 /* Application.framework in Frameworks */,
 			);
@@ -331,7 +339,9 @@
 		5B3EE3F528582AC600D47327 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
+				5BBA036D2859B70200CEF70A /* Fake */,
 				5B3EE3F628582AC600D47327 /* AppDelegate.swift */,
+				5BBA03692859B6AF00CEF70A /* AppModule.swift */,
 				5B3EE40A28582B2300D47327 /* Assets.xcassets */,
 				5B3EE40428582AC900D47327 /* Info.plist */,
 			);
@@ -428,6 +438,7 @@
 		5B8A484A28584CEF0067B4B8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5BBA03702859B7BD00CEF70A /* Function */,
 				5BBA03382859686400CEF70A /* Type */,
 				5B481431285967AB00568767 /* Extension */,
 				5B8A484B28584CEF0067B4B8 /* Common.h */,
@@ -502,6 +513,22 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		5BBA036D2859B70200CEF70A /* Fake */ = {
+			isa = PBXGroup;
+			children = (
+				5BBA036E2859B70F00CEF70A /* StubTodoItemStore.swift */,
+			);
+			path = Fake;
+			sourceTree = "<group>";
+		};
+		5BBA03702859B7BD00CEF70A /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				5BBA03712859B7C300CEF70A /* Combinator.swift */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -566,6 +593,9 @@
 				5B3EE47928582C7600D47327 /* PBXTargetDependency */,
 			);
 			name = Todo;
+			packageProductDependencies = (
+				5BBA036B2859B6F800CEF70A /* RxSwift */,
+			);
 			productName = Todo;
 			productReference = 5B3EE3F328582AC600D47327 /* Todo.app */;
 			productType = "com.apple.product-type.application";
@@ -884,6 +914,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B3EE3F728582AC600D47327 /* AppDelegate.swift in Sources */,
+				5BBA036A2859B6AF00CEF70A /* AppModule.swift in Sources */,
+				5BBA036F2859B70F00CEF70A /* StubTodoItemStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -954,6 +986,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B481436285967CE00568767 /* Observable+Extension.swift in Sources */,
+				5BBA03722859B7C300CEF70A /* Combinator.swift in Sources */,
 				5BBA033A2859686A00CEF70A /* GeneralError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1605,7 +1638,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1637,7 +1669,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1809,6 +1840,11 @@
 			productName = RxTest;
 		};
 		5BBA03652859A31900CEF70A /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B8A483A28584C510067B4B8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		5BBA036B2859B6F800CEF70A /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5B8A483A28584C510067B4B8 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
