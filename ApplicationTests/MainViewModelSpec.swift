@@ -8,7 +8,8 @@
 import Foundation
 import Quick
 import Nimble
-import Application
+import Domain
+@testable import Application
 import RxSwift
 import RxTest
 
@@ -17,6 +18,8 @@ class MainViewModelSpec : QuickSpec {
     override func spec() {
         var scheduler: TestScheduler!
         var scope: DisposeBag!
+        
+        var todoItemStore: MockTodoItemStore!
         
         var sut: MainViewModel!
         
@@ -27,7 +30,9 @@ class MainViewModelSpec : QuickSpec {
             scheduler = .init(initialClock: 0)
             scope = .init()
             
-            sut = .init()
+            todoItemStore = .init()
+            
+            sut = .init(todoItemStore: todoItemStore)
             
             stateObserver = scheduler.createObserver(MainUIState.self)
             sut.state.subscribe(stateObserver).disposed(by: scope)
@@ -59,6 +64,43 @@ class MainViewModelSpec : QuickSpec {
                 expect(sut.userAction(.selectItem(UUID().uuidString))).to(throwAssertion())
             }
         }
+        
+        describe("TodoItem 존재") {
+            var todoItems: [TodoItem]!
+            
+            beforeEach {
+                todoItems = (1 ... 10).map { .random(id: "\($0)") }
+                todoItemStore.itemsSubject.onNext(todoItems)
+            }
+            
+            it("state 갱신") {
+                let expected = MainUIState(todoItems: todoItems)
+                expect(stateObserver.events).to(haveCount(2))
+                expect(stateObserver.events.last?.value.element).to(equal(expected))
+            }
+            
+            context("UserAction SELECT_ITEM") {
+                var selectedItem: TodoItem!
+                
+                beforeEach {
+                    selectedItem = todoItems.randomElement()!
+                    sut.userAction(.selectItem(selectedItem.id))
+                }
+                
+                it("route DETAIL") {
+                    expect(routeObserver.events).to(haveCount(1))
+                    expect(routeObserver.events.last?.value.element).to(equal(.detail(selectedItem.id)))
+                }
+            }
+        }
+    }
+    
+}
+
+extension TodoItem {
+    
+    static func random(id: String, completedAt: Date? = nil) -> TodoItem {
+        TodoItem(id: id, title: UUID().uuidString, detail: UUID().uuidString, createdAt: Date(), tags: [], completedAt: completedAt)
     }
     
 }

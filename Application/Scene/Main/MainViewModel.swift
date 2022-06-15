@@ -20,7 +20,11 @@ public class MainViewModel : MainViewModelProtocol {
     public func userAction(_ action: MainUserAction) {
     }
     
-    public init() { }
+    public init(
+        todoItemStore: TodoItemStore)
+    {
+        
+    }
     
 }
 

@@ -40,6 +40,7 @@
 		5BBA033D28596DED00CEF70A /* MainContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA033C28596DED00CEF70A /* MainContract.swift */; };
 		5BBA034028596FBF00CEF70A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA033F28596FBF00CEF70A /* MainViewModel.swift */; };
 		5BBA03422859709A00CEF70A /* MainViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA03412859709A00CEF70A /* MainViewModelSpec.swift */; };
+		5BBA034628597A3000CEF70A /* MockTodoItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA034528597A3000CEF70A /* MockTodoItemStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,7 @@
 		5BBA033C28596DED00CEF70A /* MainContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContract.swift; sourceTree = "<group>"; };
 		5BBA033F28596FBF00CEF70A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		5BBA03412859709A00CEF70A /* MainViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelSpec.swift; sourceTree = "<group>"; };
+		5BBA034528597A3000CEF70A /* MockTodoItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTodoItemStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 		5B3EE44128582C5B00D47327 /* ApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
+				5BBA034428597A2000CEF70A /* Mock */,
 				5BBA03412859709A00CEF70A /* MainViewModelSpec.swift */,
 			);
 			path = ApplicationTests;
@@ -402,6 +405,14 @@
 				5BBA033F28596FBF00CEF70A /* MainViewModel.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		5BBA034428597A2000CEF70A /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				5BBA034528597A3000CEF70A /* MockTodoItemStore.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -810,6 +821,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BBA034628597A3000CEF70A /* MockTodoItemStore.swift in Sources */,
 				5BBA03422859709A00CEF70A /* MainViewModelSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
