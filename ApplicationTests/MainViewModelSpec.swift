@@ -77,7 +77,7 @@ class MainViewModelSpec : QuickSpec {
             }
             
             it("state 갱신") {
-                let expected = MainUIState(todoItems: todoItems)
+                let expected = MainUIState(mode: .browse, todoItems: todoItems, selectedItemIDs: nil)
                 expect(stateObserver.events).to(haveCount(2))
                 expect(stateObserver.events.last?.value.element).to(equal(expected))
             }

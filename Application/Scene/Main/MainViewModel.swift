@@ -19,11 +19,13 @@ public class MainViewModel : MainViewModelProtocol {
     
     public func userAction(_ action: MainUserAction) {
         switch action {
+        case .toggleMode: return
         case .add:
             _route.onNext(.add)
         case .selectItem(let itemID):
             assert(try! _state.value().todoItems.contains(where: { $0.id == itemID }))
             _route.onNext(.detail(itemID))
+        case .deleteItems: return
         }
     }
     
@@ -37,7 +39,7 @@ public class MainViewModel : MainViewModelProtocol {
             .withUnretained(self)
             .observe(on: scheduler)
             .subscribe(onNext: { vm, items in
-                vm._state.onNext(.init(todoItems: items))
+//                vm._state.onNext(.init(todoItems: items))
             })
             .disposed(by: scope)
     }
