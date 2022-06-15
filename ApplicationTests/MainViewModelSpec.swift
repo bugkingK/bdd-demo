@@ -42,6 +42,23 @@ class MainViewModelSpec : QuickSpec {
             
             expect(routeObserver.events).to(beEmpty())
         }
+        
+        describe("UserAction ADD") {
+            beforeEach {
+                sut.userAction(.add)
+            }
+            
+            it("route ADD") {
+                expect(routeObserver.events).to(haveCount(1))
+                expect(routeObserver.events.last?.value.element).to(equal(.add))
+            }
+        }
+        
+        describe("UserAction SELECT_ITEM") {
+            it("BOTTOM") {
+                expect(sut.userAction(.selectItem(UUID().uuidString))).to(throwAssertion())
+            }
+        }
     }
     
 }
