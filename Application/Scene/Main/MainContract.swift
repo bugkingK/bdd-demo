@@ -22,13 +22,13 @@ public enum MainMode {
 }
 
 public struct MainUIState {
-    public let mode: MainMode
-    public let todoItems: [TodoItem]
+    public internal(set) var mode: MainMode
+    public internal(set) var todoItems: [TodoItem]
     /**
      - Invariant: `mode == .browse`일 경우 `nil`. `mode == .edit`일 경우 non-`nil`.
      - Invariant: `todoItems`에 존재하는 `TodoItem.ID`.
      */
-    public let selectedItemIDs: [TodoItem.ID]?
+    public internal(set) var selectedItemIDs: [TodoItem.ID]?
 }
 
 public enum MainRoute {
@@ -50,6 +50,17 @@ public protocol MainViewModelProtocol : AnyObject {
 // MARK: - Extension
 
 extension MainUserAction : Equatable { }
+
+extension MainMode : Equatable {
+    
+    mutating func toggle() {
+        switch self {
+        case .browse: self = .edit
+        case .edit: self = .browse
+        }
+    }
+    
+}
 
 extension MainUIState : Equatable { }
 

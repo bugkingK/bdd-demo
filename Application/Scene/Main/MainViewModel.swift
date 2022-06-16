@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import Domain
+import Common
 
 public class MainViewModel : MainViewModelProtocol {
     
@@ -19,13 +20,33 @@ public class MainViewModel : MainViewModelProtocol {
     
     public func userAction(_ action: MainUserAction) {
         switch action {
-        case .toggleMode: return
+        case .toggleMode:
+            _state.onNext(variable(try! _state.value()) {
+                $0.mode.toggle()
+                $0.selectedItemIDs = $0.mode == .edit ? [] : nil
+            })
+            
         case .add:
             _route.onNext(.add)
+            
         case .selectItem(let itemID):
             assert(try! _state.value().todoItems.contains(where: { $0.id == itemID }))
-            _route.onNext(.detail(itemID))
-        case .deleteItems: return
+            switch try! _state.value().mode {
+            case .browse:
+                _route.onNext(.detail(itemID))
+            case .edit:
+                _state.onNext(variable(try! _state.value()) {
+                    $0.selectedItemIDs!.append(itemID)
+                })
+            }
+            
+        case .deleteItems:
+            assert(try! _state.value().selectedItemIDs?.isEmpty == false)
+            do {
+                _ = try _state.value().selectedItemIDs!.map(todoItemStore.removeItem(id:))
+            } catch {
+                print(error)
+            }
         }
     }
     
@@ -37,9 +58,10 @@ public class MainViewModel : MainViewModelProtocol {
     private func observeTodoItems() {
         todoItemStore.items
             .withUnretained(self)
+            .withLatestFrom(_state, resultSelector: flatten)
             .observe(on: scheduler)
-            .subscribe(onNext: { vm, items in
-//                vm._state.onNext(.init(todoItems: items))
+            .subscribe(onNext: { vm, items, state in
+                vm._state.onNext(MainUIState(mode: state.mode, todoItems: items, selectedItemIDs: state.selectedItemIDs))
             })
             .disposed(by: scope)
     }
@@ -55,4 +77,3 @@ public class MainViewModel : MainViewModelProtocol {
     }
     
 }
-
