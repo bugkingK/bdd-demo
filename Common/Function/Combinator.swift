@@ -28,3 +28,12 @@ public func variable<T>(_ object: T, _ block: (inout T) -> Void) -> T {
     block(&copy)
     return copy
 }
+
+public func flatten<A, B, C>(_ tuple: (A, B), _ c: C) -> (A, B, C) { (tuple.0, tuple.1, c) }
+
+public func flatten<A, B, C>(_ a: A, _ tuple: (B, C)) -> (A, B, C) { (a, tuple.0, tuple.1) }
+
+public func flatten<A, B, C, D>(_ tuple: (A, B, C), _ d: D) -> (A, B, C, D) { (tuple.0, tuple.1, tuple.2, d) }
+
+public func flatten<A, B, C, D>(_ a: A, _ tuple: (B, C, D)) -> (A, B, C, D) { (a, tuple.0, tuple.1, tuple.2) }
+
