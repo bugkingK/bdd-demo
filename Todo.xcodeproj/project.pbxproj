@@ -36,6 +36,7 @@
 		5B8A484028584C510067B4B8 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 5B8A483F28584C510067B4B8 /* RxTest */; };
 		5B8A484C28584CEF0067B4B8 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B8A484B28584CEF0067B4B8 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B8A485228584E3B0067B4B8 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A485128584E3B0067B4B8 /* TodoItem.swift */; };
+		5B8F68E6285B27FE00A17F64 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8F68E5285B27FE00A17F64 /* UIView+Extension.swift */; };
 		5B8F8E7F285ABBF10028733D /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8F8E7E285ABBF10028733D /* Collection+Extension.swift */; };
 		5BBA033A2859686A00CEF70A /* GeneralError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA03392859686A00CEF70A /* GeneralError.swift */; };
 		5BBA033D28596DED00CEF70A /* MainContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA033C28596DED00CEF70A /* MainContract.swift */; };
@@ -232,6 +233,7 @@
 		5B8A484928584CEF0067B4B8 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8A484B28584CEF0067B4B8 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		5B8A485128584E3B0067B4B8 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		5B8F68E5285B27FE00A17F64 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		5B8F8E7E285ABBF10028733D /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		5BBA03392859686A00CEF70A /* GeneralError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralError.swift; sourceTree = "<group>"; };
 		5BBA033C28596DED00CEF70A /* MainContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContract.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 			children = (
 				5B8F8E7E285ABBF10028733D /* Collection+Extension.swift */,
 				5B481435285967CE00568767 /* Observable+Extension.swift */,
+				5B8F68E5285B27FE00A17F64 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1026,6 +1029,7 @@
 				5B481436285967CE00568767 /* Observable+Extension.swift in Sources */,
 				5B8F8E7F285ABBF10028733D /* Collection+Extension.swift in Sources */,
 				5BBA03722859B7C300CEF70A /* Combinator.swift in Sources */,
+				5B8F68E6285B27FE00A17F64 /* UIView+Extension.swift in Sources */,
 				5BBA033A2859686A00CEF70A /* GeneralError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
