@@ -34,7 +34,7 @@ final class AppModule {
         let vc = MainViewController.createInstance()
         vc.setViewModel(vm)
         
-        window.rootViewController = vc
+        window.rootViewController = UINavigationController(rootViewController: vc)
     }
     
     private init() {

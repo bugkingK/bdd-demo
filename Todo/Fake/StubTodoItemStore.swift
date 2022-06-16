@@ -13,12 +13,20 @@ import Common
 
 final class StubTodoItemStore : TodoItemStore {
     
+    private var getItemID: () -> Int = assign {
+        var i = 0
+        return {
+            i += 1
+            return i
+        }
+    }
+    
     var itemsSubject = BehaviorSubject<[TodoItem]>(value: [])
     var items: Observable<[TodoItem]> { itemsSubject }
     
     func addItem(_ item: TodoItem) -> Single<String> {
         let newItemList = variable(try! itemsSubject.value()) {
-            $0.append(.with(id: "\($0.count + 1)", item: item))
+            $0.append(.with(id: "\(getItemID())", item: item))
         }
         itemsSubject.onNext(newItemList)
         
