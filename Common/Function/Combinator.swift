@@ -7,6 +7,8 @@
 
 import Foundation
 
+public func id<T>(_ value: T) -> T { value }
+
 public func assign<T>(_ factory: () throws -> T) throws -> T { try factory() }
 
 public func assign<T>(_ factory: () -> T) -> T { factory() }
