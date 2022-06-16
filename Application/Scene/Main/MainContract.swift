@@ -25,7 +25,7 @@ public struct MainUIState {
     public let mode: MainMode
     public let todoItems: [TodoItem]
     /**
-     - Invariant: `mode == .edit`일 경우 non-`nil`.
+     - Invariant: `mode == .browse`일 경우 `nil`. `mode == .edit`일 경우 non-`nil`.
      - Invariant: `todoItems`에 존재하는 `TodoItem.ID`.
      */
     public let selectedItemIDs: [TodoItem.ID]?

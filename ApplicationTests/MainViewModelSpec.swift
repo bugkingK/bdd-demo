@@ -50,7 +50,7 @@ class MainViewModelSpec : QuickSpec {
             expect(routeObserver.events).to(beEmpty())
         }
         
-        describe("UserAction ADD") {
+        describe("action ADD") {
             beforeEach {
                 sut.userAction(.add)
             }
@@ -61,13 +61,13 @@ class MainViewModelSpec : QuickSpec {
             }
         }
         
-        describe("UserAction SELECT_ITEM") {
+        describe("action SELECT_ITEM") {
             it("BOTTOM") {
                 expect(sut.userAction(.selectItem(UUID().uuidString))).to(throwAssertion())
             }
         }
         
-        describe("TodoItem 존재") {
+        describe("TodoItemStore items 갱신") {
             var todoItems: [TodoItem]!
             
             beforeEach {
@@ -82,7 +82,71 @@ class MainViewModelSpec : QuickSpec {
                 expect(stateObserver.events.last?.value.element).to(equal(expected))
             }
             
-            context("UserAction SELECT_ITEM") {
+            context("action TOGGLE_MODE") {
+                beforeEach {
+                    sut.userAction(.toggleMode)
+                }
+                
+                it("state mode EDIT") {
+                    expect(stateObserver.events).to(haveCount(3))
+                    expect(stateObserver.events.last?.value.element?.mode).to(equal(.edit))
+                }
+                
+                context("action TOGGLE_MODE") {
+                    beforeEach {
+                        sut.userAction(.toggleMode)
+                    }
+                    
+                    it("state mode BROWSE") {
+                        expect(stateObserver.events).to(haveCount(4))
+                        expect(stateObserver.events.last?.value.element?.mode).to(equal(.browse))
+                    }
+                }
+                
+                context("action DELETE_ITEMS") {
+                    it("BOTTOM") {
+                        expect(sut.userAction(.deleteItems)).to(throwAssertion())
+                    }
+                }
+                
+                context("action SELECT_ITEM") {
+                    var selectedItems: [TodoItem]!
+                    
+                    beforeEach {
+                        selectedItems = Array(todoItems.shuffled()[0...1])
+                        selectedItems.forEach {
+                            sut.userAction(.selectItem($0.id))
+                        }
+                    }
+                    
+                    it("route 반응 없음") {
+                        expect(routeObserver.events).to(beEmpty())
+                    }
+                    
+                    it("state selectedItemIDs 갱신") {
+                        let selectedIDs = selectedItems.map(\.id)
+                        expect(stateObserver.events).to(haveCount(5))
+                        expect(stateObserver.events.dropLast().last?.value.element?.selectedItemIDs).to(equal(Array(selectedIDs.dropLast())))
+                        expect(stateObserver.events.last?.value.element?.selectedItemIDs).to(equal(selectedIDs))
+                    }
+                    
+                    context("action DELETE_ITEMS") {
+                        beforeEach {
+                            sut.userAction(.deleteItems)
+                        }
+                        
+                        // 실제로 삭제되는지는 TodoItemStore 의 구현에 대한 테스트이기 때문에 할 필요가 없음.
+                        // 삭제된 것이 반영되는지는 TodoItemStore 구현체에서 테스트 해야 함.
+                        // TodoItemStore.item 의 변경 사항에 대한 반영은 "TodoItemStore items 갱신"에서 테스트 중.
+                        it("TodoItemStore removeItem") {
+                            expect(todoItemStore.removeItemArgs).to(haveCount(2))
+                            expect(Set(todoItemStore.removeItemArgs)).to(equal(Set(selectedItems.map(\.id))))
+                        }
+                    }
+                }
+            }
+            
+            context("action SELECT_ITEM") {
                 var selectedItem: TodoItem!
                 
                 beforeEach {
