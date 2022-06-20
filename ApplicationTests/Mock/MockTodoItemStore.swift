@@ -25,12 +25,13 @@ class MockTodoItemStore : TodoItemStore {
         }
     }
     
-    var removeItemArgs: [String] = []
-    var removeItemCont: ((SingleEvent<TodoItem>) -> Void)!
+    var removeItemCallSeq: [(Date, String)] = []
+    var removeItemContSeq: [(Date, (SingleEvent<TodoItem>) -> Void)] = []
     func removeItem(id: String) -> Single<TodoItem> {
-        removeItemArgs.append(id)
+        let callTime = Date()
+        removeItemCallSeq.append((callTime, id))
         return .create {
-            self.removeItemCont = $0
+            self.removeItemContSeq.append((callTime, $0))
             return Disposables.create()
         }
     }

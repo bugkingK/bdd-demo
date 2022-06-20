@@ -130,6 +130,21 @@ class MainViewModelSpec : QuickSpec {
                         expect(stateObserver.events.last?.value.element?.selectedItemIDs).to(equal(selectedIDs))
                     }
                     
+                    // jira issue #TODO-1 - 선택 해제 안 되는 버그
+                    context("action SELECT_ITEM 동일한 item") {
+                        var unselectedItemID: String!
+                        
+                        beforeEach {
+                            unselectedItemID = selectedItems[0].id
+                            sut.userAction(.selectItem(unselectedItemID))
+                        }
+                        
+                        it("state selectedItemIDs 에서 제거") {
+                            expect(stateObserver.events).to(haveCount(6))
+                            expect(stateObserver.events.last?.value.element?.selectedItemIDs).notTo(contain(unselectedItemID))
+                        }
+                    }
+                    
                     context("action DELETE_ITEMS") {
                         beforeEach {
                             sut.userAction(.deleteItems)
@@ -139,8 +154,25 @@ class MainViewModelSpec : QuickSpec {
                         // 삭제된 것이 반영되는지는 TodoItemStore 구현체에서 테스트 해야 함.
                         // TodoItemStore.item 의 변경 사항에 대한 반영은 "TodoItemStore items 갱신"에서 테스트 중.
                         it("TodoItemStore removeItem") {
-                            expect(todoItemStore.removeItemArgs).to(haveCount(2))
-                            expect(Set(todoItemStore.removeItemArgs)).to(equal(Set(selectedItems.map(\.id))))
+                            expect(todoItemStore.removeItemCallSeq.map(\.1)).to(haveCount(2))
+                            expect(Set(todoItemStore.removeItemCallSeq.map(\.1))).to(equal(Set(selectedItems.map(\.id))))
+                        }
+                        
+                        // jira issue #TODO-2 - todo 삭제 후 다른 todo 삭제하면 크래시 발생
+                        context("TodoItemStore removeItem 성공") {
+                            beforeEach {
+                                zip(todoItemStore.removeItemCallSeq.map(\.1),
+                                    todoItemStore.removeItemContSeq.map(\.1))
+                                    .forEach { id, cont in
+                                        let item = todoItems.first(where: { $0.id == id })!
+                                        cont(.success(item))
+                                    }
+                            }
+                            
+                            it("state selectedItemIDs EMPTY") {
+                                expect(stateObserver.events).to(haveCount(6))
+                                expect(stateObserver.events.last?.value.element?.selectedItemIDs).to(beEmpty())
+                            }
                         }
                     }
                 }
