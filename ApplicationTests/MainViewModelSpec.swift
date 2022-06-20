@@ -126,8 +126,8 @@ class MainViewModelSpec : QuickSpec {
                     it("state selectedItemIDs 갱신") {
                         let selectedIDs = selectedItems.map(\.id)
                         expect(stateObserver.events).to(haveCount(5))
-                        expect(stateObserver.events.dropLast().last?.value.element?.selectedItemIDs).to(equal(Array(selectedIDs.dropLast())))
-                        expect(stateObserver.events.last?.value.element?.selectedItemIDs).to(equal(selectedIDs))
+                        expect(stateObserver.events.dropLast().last?.value.element?.selectedItemIDs).notTo(contain(selectedIDs[1]))
+                        expect(stateObserver.events.last?.value.element?.selectedItemIDs).to(equal(Set(selectedIDs)))
                     }
                     
                     // jira issue #TODO-1 - 선택 해제 안 되는 버그

@@ -36,17 +36,30 @@ public class MainViewModel : MainViewModelProtocol {
                 _route.onNext(.detail(itemID))
             case .edit:
                 _state.onNext(variable(try! _state.value()) {
-                    $0.selectedItemIDs!.append(itemID)
+                    $0.selectedItemIDs!.formSymmetricDifference([itemID])
                 })
             }
             
         case .deleteItems:
             assert(try! _state.value().selectedItemIDs?.isEmpty == false)
-            do {
-                _ = try _state.value().selectedItemIDs!.map(todoItemStore.removeItem(id:))
-            } catch {
-                print(error)
+            
+            let removeItemJobs = try! _state.value().selectedItemIDs!.map {
+                todoItemStore
+                    .removeItem(id: $0)
+                    .map(Result<TodoItem, Error>.success)
+                    .catch { .just(Result<TodoItem, Error>.failure($0)) }
+                    .asObservable()
             }
+            
+            Observable.zip(removeItemJobs)
+                .withUnretained(self)
+                .subscribe(onNext: { vm, results in
+                    let deletedItemIDs = results.compactMap { try? $0.get().id }
+                    vm._state.onNext(variable(try! vm._state.value()) {
+                        $0.selectedItemIDs!.subtract(deletedItemIDs)
+                    })
+                })
+                .disposed(by: scope)
         }
     }
     
