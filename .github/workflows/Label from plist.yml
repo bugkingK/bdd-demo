@@ -1,4 +1,4 @@
-name: Launch Simulator
+name: Label from plist
 
 on: [ pull_request_target ]
 
