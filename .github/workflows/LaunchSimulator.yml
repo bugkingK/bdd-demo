@@ -1,0 +1,14 @@
+name: Launch Simulator
+
+on: [ pull_request_target ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: futureware-tech/simulator-action@v1
+        with:
+          model: 'iPhone 8'
+      - run: flutter drive
