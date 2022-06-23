@@ -1,0 +1,25 @@
+name: Label from plist
+
+on: [ pull_request_target ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: christianvuerings/add-labels@v1
+        with:
+          labels: |
+            minor release
+            bug
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Label from Info.plist
+#         uses: classpass/label-ios-version-info-plist-action@v1.0.0
+#         with:
+#           repo-token: "${{ secrets.ACCESS_TOKEN }}"
+#           info-plist-path: './Todo/Info.plist'
+#           changed-files: 'src/ios/**' # optional
+#           label-format: 'iOS {version}' # optional
+
