@@ -1,14 +1,14 @@
-name: Swift
+# name: Swift
 
-on: [ pull_request_target ]
+# on: [ pull_request_target ]
 
-jobs:
-  build:
+# jobs:
+#   build:
 
-    runs-on: macos-latest
+#     runs-on: macos-latest
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: "Test"
-      run:
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: "Test"
+#       run:
 #        xcodebuild clean test -project Todo.xcodeproj -scheme Todo -destination "platform=iOS Simulator,name=iPhone 8" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
