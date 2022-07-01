@@ -10,4 +10,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: "Test"
-      uses: devbotsxyz/xcode-test@v1
+      run:
+        xcodebuild clean test -project Todo.xcodeproj -scheme Todo -destination "platform=iOS Simulator,name=iPhone 6" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
