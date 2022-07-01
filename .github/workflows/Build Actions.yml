@@ -1,4 +1,4 @@
-name: Label from plist
+name: Build Actions
 
 on: [ pull_request_target ]
 
@@ -30,4 +30,10 @@ jobs:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           info-plist-path: './Todo/Info.plist'
           label-format: 'iOS {version}' # optional
+          
+      - name: Perform checks
+        id: license-check
+        uses: ralexander-phi/license_approval@master
+        with:
+          package_manager: 'bundler'
 
