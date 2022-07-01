@@ -34,7 +34,6 @@ disabled_rules:
 - function_parameter_count
 - comment_spacing
 included:
-- KakaoMobility/Source
 excluded:
 - Pods
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
