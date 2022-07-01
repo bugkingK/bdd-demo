@@ -1,0 +1,40 @@
+disabled_rules:
+- colon
+- comma
+- cyclomatic_complexity
+- file_length
+- function_body_length
+- leading_whitespace
+- legacy_cggeometry_functions
+- line_length
+- operator_whitespace
+- type_body_length
+- void_return
+- identifier_name
+- force_cast
+- empty_count
+- large_tuple
+- force_try
+- shorthand_operator
+- unused_optional_binding
+- trailing_whitespace
+- opening_brace
+- nesting
+- redundant_void_return
+- vertical_parameter_alignment
+- unused_closure_parameter
+- empty_enum_arguments
+- syntactic_sugar
+- redundant_optional_initialization
+- unused_setter_value
+- no_fallthrough_only
+- type_name
+- inclusive_language
+- redundant_string_enum_value
+- function_parameter_count
+- comment_spacing
+included:
+- KakaoMobility/Source
+excluded:
+- Pods
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
