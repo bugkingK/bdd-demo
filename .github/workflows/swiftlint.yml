@@ -6,12 +6,12 @@ on:
       - '.github/workflows/codelint.yml'
       - '.swiftlint.yml'
       - '**/*.swift'
-
+      
 jobs:
   SwiftLint:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
-      
-      - name: Lint code using SwiftLint
-        uses: norio-nomura/action-swiftlint@3.2.1
+
+      - name: Run Swiftlint
+        run: swiftlint --config .swiftlint.yml
