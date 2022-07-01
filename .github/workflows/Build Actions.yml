@@ -30,4 +30,7 @@ jobs:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           info-plist-path: './Todo/Info.plist'
           label-format: 'iOS {version}' # optional
+
+      - name: Lint code using SwiftLint
+        uses: norio-nomura/action-swiftlint@3.2.1
  
