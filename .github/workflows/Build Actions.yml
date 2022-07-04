@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Run Tests
+        run: ./scripts/branch+label.sh "${{ github.head_ref }}"
 #       - name : Print Title of PR
 #         run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
     
@@ -28,13 +30,13 @@ jobs:
 #           info-plist-path: './Todo/Info.plist'
 #           label-format: 'iOS {version}' # optional
 
-      - name: Echo PR Branch
-        run: |
-          echo "CURRENT_BRANCH=$( ${{github.head_ref}} | tr '/' '\n')" >> $GITHUB_ENV
+#       - name: Echo PR Branch
+#         run: |
+#           echo "CURRENT_BRANCH=$( ${{github.head_ref}} | tr '/' '\n')" >> $GITHUB_ENV
       
-      - name: ECHO BRANCH
-        run: |
-          echo ${{ env.CURRENT_BRANCH }}
+#       - name: ECHO BRANCH
+#         run: |
+#           echo ${{ env.CURRENT_BRANCH }}
 #          current_branch: ${{ github.head_ref }}
 #          tree: ${{ current_branch }}.split('/')
 #          echo "${{ tree }}"
