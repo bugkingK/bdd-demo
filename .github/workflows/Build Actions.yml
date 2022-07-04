@@ -30,7 +30,15 @@ jobs:
 
       - name: Echo PR Branch
         run: |
-          echo "CURRENT_BRANCH=$( echo ${{github.head_ref}} | tr '/' '\n')" >> $GITHUB_ENV
+          echo "CURRENT_BRANCH=$(${{ github.head_ref }} | tr '/' '\n')" >> $GITHUB_ENV
+        shell: bash
+        
+#        with:
+#          script: |
+#            const current = ${{ github.head_ref }}
+#            console.log(
+#        run: |
+#          echo "CURRENT_BRANCH=${{github.head_ref}}"
       
       - name: ECHO BRANCH
         run: |
