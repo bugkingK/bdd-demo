@@ -30,4 +30,24 @@ jobs:
           info-plist-path: './Todo/Info.plist'
           label-format: 'iOS {version}' # optional
         
+      - name: Prints the current branch name
+        run: echo "${GITHUB_BRANCH##*/}"
+        env:
+          GITHUB_BRANCH: ${{ github.ref }}
 
+      - name: Prints the current branch name
+        run: echo "${GITHUB_REF#refs/heads/}"
+        
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+        
+      - name: Push to ECR
+        id: ecr
+        uses: jwalton/gh-ecr-push@master
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: us-west-2
+          image: eng:${{ steps.extract_branch.outputs.branch }}
