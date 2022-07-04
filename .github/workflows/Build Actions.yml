@@ -7,28 +7,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-# plan1. [을] 찾아서 label에 넣는다.
-# plan2. PR 템플릿을 만들어서 선택한 것을 가져온다.    
-      - name : Print Title of PR
-        run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
+#       - name : Print Title of PR
+#         run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
     
-      - uses: actions/checkout@v2
-      - uses: christianvuerings/add-labels@v1
-        with:
-          labels: |
-            ${{ github.event.pull_request.title }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       - uses: actions/checkout@v2
+#       - uses: christianvuerings/add-labels@v1
+#         with:
+#           labels: |
+#             ${{ github.event.pull_request.title }}
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Lint code using SwiftLint
-        uses: norio-nomura/action-swiftlint@3.2.1
+#       - name: Lint code using SwiftLint
+#         uses: norio-nomura/action-swiftlint@3.2.1
                   
-      - name: Label from Info.plist
-        uses: classpass/label-ios-version-info-plist-action@v1.0.0
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          info-plist-path: './Todo/Info.plist'
-          label-format: 'iOS {version}' # optional
+#       - name: Label from Info.plist
+#         uses: classpass/label-ios-version-info-plist-action@v1.0.0
+#         with:
+#           repo-token: "${{ secrets.GITHUB_TOKEN }}"
+#           info-plist-path: './Todo/Info.plist'
+#           label-format: 'iOS {version}' # optional
 
       - name: Echo PR Branch
         run: |
