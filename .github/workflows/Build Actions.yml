@@ -31,13 +31,8 @@ jobs:
           label-format: 'iOS {version}' # optional
 
       - name: Echo PR Branch
-        run: echo "${{ github.event.pull_request.head.ref }}"
-        
-      - name: Get branch names
-        id: branch-name
-        uses: tj-actions/branch-names@v4.9
-      
-      - name: Current branch name
         run: |
-          echo "${{ steps.branch-name.outputs.current_branch }}"
-        # Outputs: "feature/test" current PR branch.
+          echo "${{ github.event.pull_request.head.ref }}"
+          echo "github.base_ref: ${{ github.base_ref }}"
+          echo "github.head_ref: ${{ github.head_ref }}"
+          echo "github.ref: ${{ github.ref }}"
