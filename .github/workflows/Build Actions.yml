@@ -30,7 +30,11 @@ jobs:
 
       - name: Echo PR Branch
         run: |
-          echo "${{ github.event.pull_request.head.ref }}"
-          echo "github.base_ref: ${{ github.base_ref }}"
-          echo "github.head_ref: ${{ github.head_ref }}"
-          echo "github.ref: ${{ github.ref }}"
+          current_branch: ${{ github.head_ref }}
+          tree: current_branch.split('/')
+          echo "${{ current_branch.split('/') }}"
+          echo "${{ tree[0] }}"
+#          echo "${{ github.event.pull_request.head.ref }}" parking/feature/TEST
+#          echo "github.base_ref: ${{ github.base_ref }}" main
+#          echo "github.head_ref: ${{ github.head_ref }}" parking/feature/TEST
+#          echo "github.ref: ${{ github.ref }}" ref/heads/main
