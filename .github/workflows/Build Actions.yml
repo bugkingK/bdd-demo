@@ -21,7 +21,7 @@ jobs:
           echo "${{ github.head_ref }}"
         
       - name: Run tests
-        run: CI=1 sh ./scripts/branch+label.sh "Unix"
+        run: CI=1 sh ./scripts/branch+label.sh "${{ github.head_ref }}"
         
         
 #       - name : Print Title of PR
