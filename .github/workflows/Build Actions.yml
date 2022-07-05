@@ -18,24 +18,29 @@ jobs:
       - name: check branch + tags
         run: |
           BRANCH_TREE=${{ github.head_ref }}
+          echo ${BRANCH_TREE}
           SELECTED_TAGS=()
           
           if echo ${BRANCH_TREE} | grep -iqF bug ; then
             SELECTED_TAGS+=("bug")
+            echo "bug"
           fi
 
           if echo ${BRANCH_TREE} | grep -iqF improve ; then
               SELECTED_TAGS+=("improve")
+              echo "improve"
           fi
 
           if echo ${BRANCH_TREE} | grep -iqF feature ; then
               SELECTED_TAGS+=("feature")
+              echo "feature"
           fi
 
           TREE_SPLIT=($(echo $BRANCH_TREE | tr "/" "\n"))
           for (( i=0; i<${#TREE_SPLIT[@]}; i++ )); do
               if echo ${TREE_SPLIT[i]} | grep -iqF RT ; then
                   SELECTED_TAGS+=( `echo ${TREE_SPLIT[i]} | tr [a-z] [A-Z]` )
+                  echo ${TREE_SPLIT[i]}
               fi
           done
           
