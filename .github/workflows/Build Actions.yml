@@ -21,7 +21,9 @@ jobs:
           echo "${{ github.head_ref }}"
       
       - name: Run Tests
-        run: ./scripts/branch+label.sh 
+        run: |
+          sudo chown -R ubuntu:ubuntu ubuntu
+          ./scripts/branch+label.sh 
         shell: bash
         
       - name: Run Test
