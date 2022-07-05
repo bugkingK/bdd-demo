@@ -1,14 +1,31 @@
 name: Build Actions
 
-on: [pull_request_target]
+#on: [pull_request_target]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+      
+      - name: Run a multi-line script
+        run: |
+          echo Run a multi-line script
+          ls -a
+          echo "${{ github.head_ref }}"
+      
       - name: Run Tests
-        run: ./scripts/branch+label.sh "${{ github.head_ref }}"
+        run: sh ./scripts/branch+label.sh 
+        
+      - name: Run Test
+        run: sh ./scripts/branch+label.sh "${{ github.head_ref }}"
+        
 #       - name : Print Title of PR
 #         run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
     
