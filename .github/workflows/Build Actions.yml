@@ -21,11 +21,11 @@ jobs:
           echo "${{ github.head_ref }}"
       
       - name: Run Tests
-        run: sh ./scripts/branch+label.sh 
+        run: ./scripts/branch+label.sh 
         shell: bash
         
       - name: Run Test
-        run: sh ./scripts/branch+label.sh "${{ github.head_ref }}"
+        run: ./scripts/branch+label.sh "${{ github.head_ref }}"
         shell: bash
         
 #       - name : Print Title of PR
