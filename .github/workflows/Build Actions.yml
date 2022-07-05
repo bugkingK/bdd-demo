@@ -21,8 +21,8 @@ jobs:
           echo "${{ github.head_ref }}"
         
       - name: Run tests
-#        run: echo sh ./scripts/branch+label.sh "${{ github.head_ref }}" >> $SELECTED_TAGS
         run: echo "SELECTED_TAGS=${{ github.head_ref }}" >> $GITHUB_ENV
+#                run: echo sh ./scripts/branch+label.sh "${{ github.head_ref }}" >> $SELECTED_TAGS
         
       - name: Tagging
       - uses: christianvuerings/add-labels@v1
