@@ -1,4 +1,4 @@
-#!/bin/bash
+#/bin/bash
 
 BRANCH_TREE="parking/BUG/improVe/feaTure/rt10"
 SELECTED_TAGS=()
