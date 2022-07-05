@@ -1,6 +1,8 @@
 #!/bin/sh
 
 BRANCH_TREE="parking/BUG/improVe/feaTure/rt10"
+echo $0
+echo $1
 SELECTED_TAGS=()
 
 if echo ${BRANCH_TREE} | grep -iqF bug ; then
