@@ -11,9 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Run tests
-        run: echo "SELECTED_TAGS=" >> $GITHUB_ENV
+    steps:      
+      - uses: actions/checkout@v2
         
       - name: check branch + tags
         run: |
@@ -22,34 +21,35 @@ jobs:
           SELECTED_TAGS=()
           
           if echo ${BRANCH_TREE} | grep -iqF bug ; then
-            SELECTED_TAGS+=("bug")
+            SELECTED_TAGS+=("bug,")
           fi
 
           if echo ${BRANCH_TREE} | grep -iqF improve ; then
-              SELECTED_TAGS+=("improve")
+              SELECTED_TAGS+=("improve,")
           fi
 
           if echo ${BRANCH_TREE} | grep -iqF feature ; then
-              SELECTED_TAGS+=("feature")
+              SELECTED_TAGS+=("feature,")
           fi
 
           TREE_SPLIT=($(echo $BRANCH_TREE | tr "/" "\n"))
           for (( i=0; i<${#TREE_SPLIT[@]}; i++ )); do
               if echo ${TREE_SPLIT[i]} | grep -iqF RT ; then
-                  SELECTED_TAGS+=( `echo ${TREE_SPLIT[i]} | tr [a-z] [A-Z]` )
+                  SELECTED_TAGS+=( `echo "${TREE_SPLIT[i]}," | tr [a-z] [A-Z]` )
               fi
           done
           
           echo ${SELECTED_TAGS[@]}
           echo "SELECTED_TAGS=${SELECTED_TAGS[@]}" >> $GITHUB_ENV
         
-      - uses: actions/checkout@v2
-      - uses: christianvuerings/add-labels@v1
+      - name: Add labels
+        uses: KeisukeYamashita/attach-labels@v1
         with:
-          labels: |
-            ${{ env.SELECTED_TAGS }}
+          labels: ${{ env.SELECTED_TAGS }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+                    
         
 #       - name : Print Title of PR
 #         run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
