@@ -22,13 +22,13 @@ jobs:
       - name: Run tests
         run: echo "SELECTED_TAGS=TEST" >> $GITHUB_ENV
         
-      - name: Tagging
-      - uses: christianvuerings/add-labels@v1
-        with:
-          labels: |
-            ${{ env.SELECTED_TAGS }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Tagging
+#       - uses: christianvuerings/add-labels@v1
+#         with:
+#           labels: |
+#             ${{ env.SELECTED_TAGS }}
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
         
 #       - name : Print Title of PR
