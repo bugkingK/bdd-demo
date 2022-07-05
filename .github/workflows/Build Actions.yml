@@ -22,9 +22,11 @@ jobs:
       
       - name: Run Tests
         run: sh ./scripts/branch+label.sh 
+        shell: bash
         
       - name: Run Test
         run: sh ./scripts/branch+label.sh "${{ github.head_ref }}"
+        shell: bash
         
 #       - name : Print Title of PR
 #         run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
