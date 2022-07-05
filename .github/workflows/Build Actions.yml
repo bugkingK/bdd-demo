@@ -19,16 +19,10 @@ jobs:
           echo Run a multi-line script
           ls -a
           echo "${{ github.head_ref }}"
-      
-      - name: Run Tests
-        run: |
-          chmod +x ./scripts/branch+label.sh 
-          ./scripts/branch+label.sh 
-        shell: bash
         
-      - name: Run Test
-        run: ./scripts/branch+label.sh "${{ github.head_ref }}"
-        shell: bash
+      - name: Run tests
+        run: CI=1 ./scripts/branch+label.sh "Unix"
+        
         
 #       - name : Print Title of PR
 #         run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
