@@ -1,11 +1,11 @@
 name: Build Actions
 
-on: [pull_request_target]
-# on:
-#   push:
-#     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
+# on: [pull_request_target]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -18,18 +18,15 @@ jobs:
         run: |
           echo Run a multi-line script
           ls -a
-          echo "${{ github.head_ref }}"
         
       - name: Run tests
-        run: echo "SELECTED_TAGS=${{ github.head_ref }}" >> $GITHUB_ENV
-#                run: echo sh ./scripts/branch+label.sh "${{ github.head_ref }}" >> $SELECTED_TAGS
+        run: echo "SELECTED_TAGS=TEST" >> $GITHUB_ENV
         
       - name: Tagging
       - uses: christianvuerings/add-labels@v1
         with:
           labels: |
-            ${{ github.event.pull_request.title }}
-            ${{ env.RELEASE_VERSION }}
+            ${{ env.SELECTED_TAGS }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
