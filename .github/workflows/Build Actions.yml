@@ -21,19 +21,23 @@ jobs:
           echo "${{ github.head_ref }}"
         
       - name: Run tests
-        run: CI=1 sh ./scripts/branch+label.sh "${{ github.head_ref }}"
+#        run: echo sh ./scripts/branch+label.sh "${{ github.head_ref }}" >> $SELECTED_TAGS
+        run: echo "SELECTED_TAGS=${{ github.head_ref }}" >> $GITHUB_ENV
+        
+      - name: Tagging
+      - uses: christianvuerings/add-labels@v1
+        with:
+          labels: |
+            ${{ github.event.pull_request.title }}
+            ${{ env.RELEASE_VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
         
 #       - name : Print Title of PR
 #         run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
     
 #       - uses: actions/checkout@v2
-#       - uses: christianvuerings/add-labels@v1
-#         with:
-#           labels: |
-#             ${{ github.event.pull_request.title }}
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
 #       - name: Lint code using SwiftLint
 #         uses: norio-nomura/action-swiftlint@3.2.1
