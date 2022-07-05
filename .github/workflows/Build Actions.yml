@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Run tests
-        run: echo "SELECTED_TAGS=TEST" >> $GITHUB_ENV
+        run: echo "SELECTED_TAGS=bug improve feature" >> $GITHUB_ENV
         
       - uses: actions/checkout@v2
       - uses: christianvuerings/add-labels@v1
