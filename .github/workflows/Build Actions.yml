@@ -39,13 +39,25 @@ jobs:
               fi
           done
           
-          echo ${SELECTED_TAGS[@]}
-          echo "SELECTED_TAGS=${SELECTED_TAGS[@]}" >> $GITHUB_ENV
+          i=0
+          TAGS_TEXT=""
+          for word in "${SELECTED_TAGS[@]}"
+          do
+              let i=i+1
+              if [ $i -eq 1 ]; then
+                  TAGS_TEXT="${word}"
+              else
+                  TAGS_TEXT="${TAGS_TEXT},${word}"
+              fi
+          done
+
+          echo ${TAGS_TEXT}
+          echo "TAGS_TEXT=${TAGS_TEXT}" >> $GITHUB_ENV
         
       - name: Add labels
         uses: KeisukeYamashita/attach-labels@v1
         with:
-          labels: hello,bye
+          labels: ${{ env.TAGS_TEXT }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
