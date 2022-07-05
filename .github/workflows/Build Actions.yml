@@ -12,21 +12,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      
-      - name: Run a multi-line script
-        run: |
-          echo Run a multi-line script
-          ls -a
-        
       - name: Run tests
         run: echo "SELECTED_TAGS=TEST" >> $GITHUB_ENV
         
+      - uses: actions/checkout@v2
+      - uses: christianvuerings/add-labels@v1
+        with:
+          labels: |
+            minor ${{ env.SELECTED_TAGS }}
+            bug
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #       - name: Tagging
 #       - uses: christianvuerings/add-labels@v1
 #         with:
 #           labels: |
-#             ${{ env.SELECTED_TAGS }}
+#             
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
