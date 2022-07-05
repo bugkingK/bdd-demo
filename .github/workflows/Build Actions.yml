@@ -19,18 +19,11 @@ jobs:
       - uses: christianvuerings/add-labels@v1
         with:
           labels: |
-            minor ${{ env.SELECTED_TAGS }}
+            minor
+            ${{ env.SELECTED_TAGS }}
             bug
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       - name: Tagging
-#       - uses: christianvuerings/add-labels@v1
-#         with:
-#           labels: |
-#             
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
         
 #       - name : Print Title of PR
 #         run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
