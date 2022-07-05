@@ -22,7 +22,7 @@ jobs:
       
       - name: Run Tests
         run: |
-          sudo chown -R ubuntu:ubuntu ubuntu
+          chmod +x ./scripts
           ./scripts/branch+label.sh 
         shell: bash
         
