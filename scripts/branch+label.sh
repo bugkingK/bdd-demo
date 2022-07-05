@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BRANCH_TREE=$0
+BRANCH_TREE=$1
 echo ${BRANCH_TREE}
 SELECTED_TAGS=()
 
