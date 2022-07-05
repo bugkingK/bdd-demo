@@ -1,6 +1,11 @@
 name: Build Actions
 
-on: [pull_request_target]
+#on: [pull_request_target]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -8,8 +13,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
       - name: Run Tests
-        run: ./scripts/branch+label.sh "${{ github.head_ref }}"
+        run: sh ./scripts/branch+label.sh "${{ github.head_ref }}"
+        
+      - name: Run Test
+        run: sh ./scripts/branch+label.sh
+        
 #       - name : Print Title of PR
 #         run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
     
