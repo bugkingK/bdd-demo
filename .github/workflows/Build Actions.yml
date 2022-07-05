@@ -45,7 +45,7 @@ jobs:
       - name: Add labels
         uses: KeisukeYamashita/attach-labels@v1
         with:
-          labels: ${{ env.SELECTED_TAGS }}
+          labels: hello,bye
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
