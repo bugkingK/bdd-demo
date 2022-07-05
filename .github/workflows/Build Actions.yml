@@ -22,7 +22,7 @@ jobs:
       
       - name: Run Tests
         run: |
-          chmod +x ./scripts
+          chmod +x ./scripts/branch+label.sh 
           ./scripts/branch+label.sh 
         shell: bash
         
