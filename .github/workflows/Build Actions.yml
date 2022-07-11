@@ -1,9 +1,6 @@
 name: Build Actions
 
-on: 
-  pull_request:
-    tags:
-      - 'v*'
+on: pull_request
 
 jobs:
   build:
