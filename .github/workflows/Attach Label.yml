@@ -22,10 +22,7 @@ jobs:
           BRANCH_TREE="parking/mmmdfs/rt99/bug/improVe/feaTure/rt10"
           DETECT_VERTICAL=("parking" "rentcar")
           DETECT_TAGS=("bug" "improve" "feature")
-
-          if [[ -n ${{ env.APP_VERSION }} ]]; then
-            SELECTED_TAGS=(${{ env.APP_VERSION }})
-          fi
+          SELECTED_TAGS=(${{ env.APP_VERSION }})
 
           function detect_tag() {
               for tag in ${DETECT_TAGS[@]}
@@ -77,8 +74,6 @@ jobs:
           detect_rt
           sum_tags
 
-          echo ${{ env.APP_VERSION }}
-          echo ${TAGS_TEXT}
           echo "TAGS_TEXT=${TAGS_TEXT}" >> $GITHUB_ENV
         
       - name: Add labels
