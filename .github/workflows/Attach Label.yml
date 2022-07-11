@@ -19,47 +19,66 @@ jobs:
         
       - name: check branch + tags
         run: |
-          BRANCH_TREE=${{ github.head_ref }}
-          CURRNET_TAG=${{ github.tag_name }}
+          BRANCH_TREE="parking/mmmdfs/rt99/bug/improVe/feaTure/rt10"
+          DETECT_VERTICAL=("parking" "rentcar")
           DETECT_TAGS=("bug" "improve" "feature")
-          SELECTED_TAGS=(${{ env.APP_VERSION }})
+
+          if [[ -n ${{ env.APP_VERSION }} ]]; then
+            SELECTED_TAGS=(${{ env.APP_VERSION }})
+          fi
 
           function detect_tag() {
-              if echo ${BRANCH_TREE} | grep -iqF $1 ; then
-                  SELECTED_TAGS+=($1)
-              fi
-          }
-
-          function detect_rt() {
-              TREE_SPLIT=($(echo $BRANCH_TREE | tr "/" "\n"))
-              for (( i=0; i<${#TREE_SPLIT[@]}; i++ )); do
-                  if echo ${TREE_SPLIT[i]} | grep -iqF RT ; then
-                      SELECTED_TAGS+=( `echo ${TREE_SPLIT[i]} | tr [a-z] [A-Z]` )
+              for tag in ${DETECT_TAGS[@]}
+              do
+                  if echo ${BRANCH_TREE} | grep -iqF ${tag} ; then
+                      SELECTED_TAGS+=(${tag})
                   fi
               done
           }
 
-          for tag in ${DETECT_TAGS[@]}
-          do
-              detect_tag ${tag}
-          done
-          detect_rt
+          function detect_vertical() {
+              for vertical in ${DETECT_VERTICAL[@]}
+              do
+                  if echo ${BRANCH_TREE} | grep -iqF ${vertical} ; then
+                      SELECTED_TAGS+=(${vertical})
+                  fi
+              done
+          }
 
-          i=0
-          TAGS_TEXT=""
-          for word in "${SELECTED_TAGS[@]}"
-          do
-              let i=i+1
-              if [ $i -eq 1 ]; then
-                  TAGS_TEXT="${word}"
-              else
-                  TAGS_TEXT="${TAGS_TEXT},${word}"
-              fi
-          done
+          function detect_rt() {
+              TREE_SPLIT=($(echo $BRANCH_TREE | tr "/" "\n"))
+              for word in "${TREE_SPLIT[@]}"
+              do
+                  for ((i = 1; i <= 40; i++)); do
+                      up_word=`echo $word | tr '[:lower:]' '[:upper:]'`
+                      if [ "${up_word}" == "RT${i}" ]; then
+                          SELECTED_TAGS+=( `echo ${up_word} | tr [a-z] [A-Z]` )
+                      fi
+                  done
+              done
+          }
+
+          function sum_tags() {
+              i=0
+              TAGS_TEXT=""
+              for word in "${SELECTED_TAGS[@]}"
+              do
+                  let i=i+1
+                  if [ $i -eq 1 ]; then
+                      TAGS_TEXT="${word}"
+                  else
+                      TAGS_TEXT="${TAGS_TEXT},${word}"
+                  fi
+              done
+          }
+
+          detect_tag
+          detect_vertical
+          detect_rt
+          sum_tags
 
           echo ${{ env.APP_VERSION }}
           echo ${TAGS_TEXT}
-          echo ${CURRNET_TAG}
           echo "TAGS_TEXT=${TAGS_TEXT}" >> $GITHUB_ENV
         
       - name: Add labels
