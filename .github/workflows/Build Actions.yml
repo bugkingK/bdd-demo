@@ -12,7 +12,7 @@ jobs:
       - name: check branch + tags
         run: |
           BRANCH_TREE=${{ github.head_ref }}
-          CURRNET_TAG=${{ github.event.release.tag_name }}
+          CURRNET_TAG=${{ github.tag_name }}
           DETECT_TAGS=("bug" "improve" "feature")
           SELECTED_TAGS=()
 
