@@ -22,8 +22,12 @@ jobs:
           echo "APP_VERSION=${step3}" >> $GITHUB_ENV
           TEST1=${{ github.event.pull_request.base.ref }}
           TEST2=${{ github.event.pull_request.base.sha }}
+          TEST3=${{ github.event.pull_request.head.ref }}
+          TEST4=${{ github.event.pull_request.head.sha }}
           echo ${TEST1}
           echo ${TEST2}
+          echo ${TEST3}
+          echo ${TEST4}
       
       - name: Create Release
         id: create_release
