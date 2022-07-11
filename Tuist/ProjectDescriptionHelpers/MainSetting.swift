@@ -7,4 +7,4 @@
 
 import Foundation
 
-let APP_VERSION             = "1.4.0"
+let APP_VERSION             = "1.5.0"
