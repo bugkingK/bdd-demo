@@ -8,6 +8,11 @@ jobs:
 
     steps:      
       - uses: actions/checkout@v2
+
+      - name: current Tag
+        run: | 
+          echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV
+          echo ${{ env.GIT_TAG }}
         
       - name: check branch + tags
         run: |
