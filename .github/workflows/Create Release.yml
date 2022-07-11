@@ -20,8 +20,8 @@ jobs:
           step2=`echo ${step1} | sed 's/let APP_VERSION = //g'`
           step3=`echo ${step2} | sed 's/"//g'`
           echo "APP_VERSION=${step3}" >> $GITHUB_ENV
-          TEST1=${{ github.event.base_ref }}
-          TEST2=${{ github.event.before }}
+          TEST1=${{ github.event.pull_request.base.ref }}
+          TEST2=${{ github.event.pull_request.base.sha }}
           echo ${TEST1}
           echo ${TEST2}
       
