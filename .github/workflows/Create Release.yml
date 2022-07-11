@@ -18,7 +18,7 @@ jobs:
           step2=`echo ${step1} | sed 's/let APP_VERSION = //g'`
           step3=`echo ${step2} | sed 's/"//g'`
           echo "APP_VERSION=${step3}" >> $GITHUB_ENV
-          BRANCH_TREE=${{ github.head_ref }}
+          BRANCH_TREE=${{ GITHUB_REF#refs/heads/ }}
           echo ${BRANCH_TREE}
       
       - name: Create Release
