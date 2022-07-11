@@ -15,7 +15,7 @@ jobs:
           step1=`sed -n '/let APP_VERSION/p' ${TUIST_PATH}`
           step2=`echo ${step1} | sed 's/let APP_VERSION = //g'`
           step3=`echo ${step2} | sed 's/"//g'`
-#          echo "APP_VERSION=${step3}" >> $GITHUB_ENV
+          echo "APP_VERSION=${step3}" >> $GITHUB_ENV
         
       - name: check branch + tags
         run: |
@@ -83,6 +83,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-#       - name: Lint code using SwiftLint
-#         uses: norio-nomura/action-swiftlint@3.2.1
+
+
+
+
+
       
