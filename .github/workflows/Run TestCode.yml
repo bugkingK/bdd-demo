@@ -1,4 +1,4 @@
-name: Swift
+name: Run TestCode
 
 on: pull_request
 
