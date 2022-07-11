@@ -19,7 +19,7 @@ jobs:
         
       - name: check branch + tags
         run: |
-          BRANCH_TREE="parking/mmmdfs/rt99/bug/improVe/feaTure/rt10"
+          BRANCH_TREE=${{ github.head_ref }}
           DETECT_VERTICAL=("parking" "rentcar")
           DETECT_TAGS=("bug" "improve" "feature")
           SELECTED_TAGS=(${{ env.APP_VERSION }})
