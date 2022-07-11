@@ -1,4 +1,4 @@
-name: Attach Label
+name: Attach Label + Swift Lint
 
 on: pull_request
 
@@ -82,8 +82,9 @@ jobs:
           labels: ${{ env.TAGS_TEXT }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-
+                
+      - name: Lint code using SwiftLint
+        uses: norio-nomura/action-swiftlint@3.2.1
 
 
 
