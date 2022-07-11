@@ -1,4 +1,4 @@
-name: Build Actions
+name: Attach Label
 
 on: pull_request
 
@@ -9,10 +9,13 @@ jobs:
     steps:      
       - uses: actions/checkout@v2
       
-      - name: TEST-RELENE
+      - name: get App-version
         run: |
-          echo ${{ github.ref }}
-          echo ${{ github.event.release.tag_name }}
+          TUIST_PATH="./Tuist/ProjectDescriptionHelpers/MainSetting.swift"
+          step1=`sed -n '/let APP_VERSION/p' ${TUIST_PATH}`
+          step2=`echo ${step1} | sed 's/let APP_VERSION = //g'`
+          step3=`echo ${step2} | sed 's/"//g'`
+          echo "APP_VERSION=${step3}" >> $GITHUB_ENV
         
       - name: check branch + tags
         run: |
@@ -54,6 +57,7 @@ jobs:
               fi
           done
 
+          echo ${{ env.APP_VERSION }}
           echo ${TAGS_TEXT}
           echo ${CURRNET_TAG}
           echo "TAGS_TEXT=${TAGS_TEXT}" >> $GITHUB_ENV
