@@ -1,11 +1,6 @@
 name: Build Actions
 
 on: [pull_request_target]
-# on:
-#   push:
-#     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
 
 jobs:
   build:
@@ -17,6 +12,7 @@ jobs:
       - name: check branch + tags
         run: |
           BRANCH_TREE=${{ github.head_ref }}
+          CURRNET_TAG=${{ github.event.release.tag_name }}
           DETECT_TAGS=("bug" "improve" "feature")
           SELECTED_TAGS=()
 
@@ -54,6 +50,7 @@ jobs:
           done
 
           echo ${TAGS_TEXT}
+          echo ${CURRNET_TAG}
           echo "TAGS_TEXT=${TAGS_TEXT}" >> $GITHUB_ENV
         
       - name: Add labels
@@ -62,36 +59,7 @@ jobs:
           labels: ${{ env.TAGS_TEXT }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-                    
-        
-#       - name : Print Title of PR
-#         run: echo The Title of your PR is ${{ github.event.pull_request.title }}, {{ ./Todo/Info.plist }}
-    
-#       - uses: actions/checkout@v2
           
 #       - name: Lint code using SwiftLint
 #         uses: norio-nomura/action-swiftlint@3.2.1
-                  
-#       - name: Label from Info.plist
-#         uses: classpass/label-ios-version-info-plist-action@v1.0.0
-#         with:
-#           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-#           info-plist-path: './Todo/Info.plist'
-#           label-format: 'iOS {version}' # optional
-
-#       - name: Echo PR Branch
-#         run: |
-#           echo "CURRENT_BRANCH=$( ${{github.head_ref}} | tr '/' '\n')" >> $GITHUB_ENV
       
-#       - name: ECHO BRANCH
-#         run: |
-#           echo ${{ env.CURRENT_BRANCH }}
-#          current_branch: ${{ github.head_ref }}
-#          tree: ${{ current_branch }}.split('/')
-#          echo "${{ tree }}"
-#          echo "${{ tree[0] }}"
-#          echo "${{ github.event.pull_request.head.ref }}" parking/feature/TEST
-#          echo "github.base_ref: ${{ github.base_ref }}" main
-#          echo "github.head_ref: ${{ github.head_ref }}" parking/feature/TEST
-#          echo "github.ref: ${{ github.ref }}" ref/heads/main
