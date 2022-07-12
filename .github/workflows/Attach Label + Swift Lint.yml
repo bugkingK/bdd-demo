@@ -1,6 +1,9 @@
 name: Attach Label + Swift Lint
 
-on: pull_request
+on: 
+  pull_request:
+    branches:    
+      - '!release/**'
 
 jobs:
   build:
