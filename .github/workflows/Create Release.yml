@@ -17,10 +17,12 @@ jobs:
       - name: get App-version
         run: |
           TUIST_PATH="./Tuist/ProjectDescriptionHelpers/MainSetting.swift"
+          echo "TUIST_PATH=${TUIST_PATH}" >> $GITHUB_ENV
           step1=`sed -n '/let APP_VERSION/p' ${TUIST_PATH}`
           step2=`echo ${step1} | sed 's/let APP_VERSION = //g'`
           step3=`echo ${step2} | sed 's/"//g'`
           echo "APP_VERSION=${step3}" >> $GITHUB_ENV
+          echo ${{ github.event.pull_request.title }}
       
       - name: Create Release
         id: create_release
@@ -33,5 +35,22 @@ jobs:
           body: version-${{ env.APP_VERSION }}
           draft: false
           prerelease: false
+          
+      - name: App Version Bump up
+        run: |
+          APP_VERSION=${{ env.APP_VERSION }}
+          NEXT_VERSION=$(echo ${APP_VERSION} | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}')
+          TUIST_PATH=${{ env.TUIST_PATH }}
+          echo ${APP_VERSION}
+          echo ${NEXT_VERSION}
+          echo ${TUIST_PATH}
+          
+          sed -i "s/$APP_VERSION/$NEXT_VERSION/g" $TUIST_PATH
+          
+          git config --global user.name "kamo"
+          git config --global user.email "kamo.bot@kakaomobility.com"
+          git status
+          git add .
+          git commit -m "Auto Increment APP_VERSION"
+          git push
 
-# TODO: APP_VERSION + 1 한 후에 dev에 commit + push 코드 필요
