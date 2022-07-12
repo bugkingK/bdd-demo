@@ -51,6 +51,6 @@ jobs:
           git config --global user.email "kamo.bot@kakaomobility.com"
           git status
           git add .
-          git commit -m "Auto Increment APP_VERSION"
+          git commit -m "kamo.bot: Auto Increment ${NEXT_VERSION}"
           git push
 
