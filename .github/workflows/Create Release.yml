@@ -9,10 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.head.ref, 'release')
+
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: get App-version
         run: |
           TUIST_PATH="./Tuist/ProjectDescriptionHelpers/MainSetting.swift"
@@ -20,35 +21,17 @@ jobs:
           step2=`echo ${step1} | sed 's/let APP_VERSION = //g'`
           step3=`echo ${step2} | sed 's/"//g'`
           echo "APP_VERSION=${step3}" >> $GITHUB_ENV
-          TEST1=${{ github.event.pull_request.base.ref }}
-          TEST2=${{ github.event.pull_request.base.sha }}
-          TEST3=${{ github.event.pull_request.head.ref }}
-          TEST4=${{ github.event.pull_request.head.sha }}
-          echo ${TEST1}
-          echo ${TEST2}
-          echo ${TEST3}
-          echo ${TEST4}
       
-#       - name: Create Release
-#         id: create_release
-#         uses: actions/create-release@v1
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#         with:
-#           tag_name: version-${{ env.APP_VERSION }}
-#           release_name: version-${{ env.APP_VERSION }}
-#           body: version-${{ env.APP_VERSION }}
-#           draft: false
-#           prerelease: false
-
-      - name: get next version
-        id: 'bump'
-        uses: allegro-actions/next-version@v1
-
-      - name: Push new tag on master
-        if: github.ref == 'refs/heads/master'
-        uses: allegro-actions/create-tag@v1
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag: ${{ steps.bump.outputs.next_tag }}
-          current-tag: ${{ env.APP_VERSION }}
+          tag_name: version-${{ env.APP_VERSION }}
+          release_name: version-${{ env.APP_VERSION }}
+          body: version-${{ env.APP_VERSION }}
+          draft: false
+          prerelease: false
 
+# TODO: APP_VERSION + 1 한 후에 dev에 commit + push 코드 필요
