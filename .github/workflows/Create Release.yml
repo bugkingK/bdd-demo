@@ -53,4 +53,9 @@ jobs:
           git add .
           git commit -m "kamo.bot: Auto Increment ${NEXT_VERSION}"
           git push
+          
+          NEXT_BRANCH="release/version-${NEXT_VERSION}"
+          git checkout -b ${NEXT_BRANCH} dev
+          git push --set-upstream origin ${NEXT_BRANCH}
+          
 
