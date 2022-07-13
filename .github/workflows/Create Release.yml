@@ -9,46 +9,53 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.head.ref, 'release')
+
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: get App-version
         run: |
           TUIST_PATH="./Tuist/ProjectDescriptionHelpers/MainSetting.swift"
+          echo "TUIST_PATH=${TUIST_PATH}" >> $GITHUB_ENV
           step1=`sed -n '/let APP_VERSION/p' ${TUIST_PATH}`
           step2=`echo ${step1} | sed 's/let APP_VERSION = //g'`
           step3=`echo ${step2} | sed 's/"//g'`
           echo "APP_VERSION=${step3}" >> $GITHUB_ENV
-          TEST1=${{ github.event.pull_request.base.ref }}
-          TEST2=${{ github.event.pull_request.base.sha }}
-          TEST3=${{ github.event.pull_request.head.ref }}
-          TEST4=${{ github.event.pull_request.head.sha }}
-          echo ${TEST1}
-          echo ${TEST2}
-          echo ${TEST3}
-          echo ${TEST4}
+          echo ${{ github.event.pull_request.title }}
       
-#       - name: Create Release
-#         id: create_release
-#         uses: actions/create-release@v1
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#         with:
-#           tag_name: version-${{ env.APP_VERSION }}
-#           release_name: version-${{ env.APP_VERSION }}
-#           body: version-${{ env.APP_VERSION }}
-#           draft: false
-#           prerelease: false
-
-      - name: get next version
-        id: 'bump'
-        uses: allegro-actions/next-version@v1
-
-      - name: Push new tag on master
-        if: github.ref == 'refs/heads/master'
-        uses: allegro-actions/create-tag@v1
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag: ${{ steps.bump.outputs.next_tag }}
-          current-tag: ${{ env.APP_VERSION }}
+          tag_name: version-${{ env.APP_VERSION }}
+          release_name: version-${{ env.APP_VERSION }}
+          body: version-${{ env.APP_VERSION }}
+          draft: false
+          prerelease: false
+          
+      - name: App Version Bump up
+        run: |
+          APP_VERSION=${{ env.APP_VERSION }}
+          NEXT_VERSION=$(echo ${APP_VERSION} | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}')
+          TUIST_PATH=${{ env.TUIST_PATH }}
+          echo ${APP_VERSION}
+          echo ${NEXT_VERSION}
+          echo ${TUIST_PATH}
+          
+          sed -i "s/$APP_VERSION/$NEXT_VERSION/g" $TUIST_PATH
+          
+          git config --global user.name "kamo"
+          git config --global user.email "kamo.bot@kakaomobility.com"
+          git status
+          git add .
+          git commit -m "kamo.bot: Auto Increment ${NEXT_VERSION}"
+          git push
+          
+          NEXT_BRANCH="release/version-${NEXT_VERSION}"
+          git checkout -b ${NEXT_BRANCH} dev
+          git push --set-upstream origin ${NEXT_BRANCH}
+          
 
