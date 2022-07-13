@@ -3,6 +3,7 @@ name: Run TestCode
 on: 
   pull_request:
     branches:    
+      - '**'
       - '!release/**'
 
 jobs:
